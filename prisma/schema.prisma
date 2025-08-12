@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Property {
+  id          String         @id @default(cuid())
+  name        String
+  city        String
+  state       String
+  rooms       Int
+  adr         Float
+  occupancy   Float
+  revpar      Float
+  phone       String?
+  email       String?
+  website     String?
+  rating      Float?         @default(0) // 1-5 stars
+  amenities   String[]       // Pool, Gym, WiFi, etc.
+  status      PropertyStatus @default(ACTIVE)
+  managerId   String?
+  imageUrl    String?        // Property photo
+  description String?
+  address     String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  
+  // RELATIONSHIPS:
+  bookings    Booking[]
+  reviews     Review[]
+  manager     User?    @relation(fields: [managerId], references: [id])
+  
+  @@index([city, state])
+  @@index([rating])
+  @@index([status])
+}
+
+enum PropertyStatus {
+  ACTIVE
+  INACTIVE
+  MAINTENANCE
+}
+
+model User {
+  id         String     @id @default(cuid())
+  email      String     @unique
+  name       String
+  role       UserRole   @default(MANAGER)
+  avatar     String?
+  phone      String?
+  properties Property[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+enum UserRole {
+  ADMIN
+  MANAGER
+  STAFF
+}
+
+model Booking {
+  id         String        @id @default(cuid())
+  propertyId String
+  guestName  String
+  guestEmail String?
+  guestPhone String?
+  checkIn    DateTime
+  checkOut   DateTime
+  roomCount  Int
+  totalCost  Float
+  status     BookingStatus @default(CONFIRMED)
+  notes      String?
+  property   Property      @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  
+  @@index([propertyId])
+  @@index([checkIn, checkOut])
+  @@index([status])
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  CHECKED_IN
+  CHECKED_OUT
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  propertyId String
+  guestName  String
+  guestEmail String?
+  rating     Int      // 1-5
+  comment    String?
+  isVerified Boolean  @default(false)
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  
+  @@index([propertyId])
+  @@index([rating])
+}
