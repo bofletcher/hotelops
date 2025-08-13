@@ -33,7 +33,18 @@ export function OccupancyTrendChart({ properties, title = "Occupancy Rate by Pro
     revpar: property.revpar
   }));
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  interface TooltipPayload {
+    color: string;
+    payload: {
+      fullName: string;
+      city: string;
+      occupancy: number;
+      adr: number;
+      revpar: number;
+    };
+  }
+
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: TooltipPayload[]; label?: string }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (

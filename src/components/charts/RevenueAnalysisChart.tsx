@@ -35,7 +35,19 @@ export function RevenueAnalysisChart({ properties, title = "Revenue Analysis: AD
     potentialRevenue: Math.round(property.adr * property.rooms * 100) / 100
   }));
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  interface TooltipPayload {
+    payload: {
+      fullName: string;
+      city: string;
+      rooms: number;
+      ADR: number;
+      RevPAR: number;
+      occupancy: number;
+      potentialRevenue: number;
+    };
+  }
+
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: TooltipPayload[]; label?: string }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (

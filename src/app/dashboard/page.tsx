@@ -16,7 +16,7 @@ import Navbar from '@/components/navbar';
 import { mockProperties } from '@/lib/mock-data';
 import { RefreshCw, BarChart3, TrendingUp, DollarSign } from 'lucide-react';
 
-type Property = {
+interface Property {
   id: string;
   name: string;
   city: string;
@@ -28,13 +28,13 @@ type Property = {
   rating?: number;
   status?: string;
   createdAt: string;
-};
+}
 
 export default function Dashboard() {
   const [refreshing, setRefreshing] = useState(false);
 
   // Fetch properties data with fallback to mock data
-  const { data: properties = [], isLoading, error, refetch } = useQuery({
+  const { data: properties = [], isLoading, error, refetch } = useQuery<Property[]>({
     queryKey: ['properties'],
     queryFn: async () => {
       try {
@@ -227,7 +227,7 @@ export default function Dashboard() {
                     {properties
                       .sort((a, b) => b.revpar - a.revpar)
                       .slice(0, 5)
-                      .map((property, index) => (
+                      .map((property) => (
                         <div key={property.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                           <div>
                             <div className="font-medium">{property.name}</div>
@@ -252,7 +252,7 @@ export default function Dashboard() {
                     {properties
                       .sort((a, b) => b.adr - a.adr)
                       .slice(0, 5)
-                      .map((property, index) => (
+                      .map((property) => (
                         <div key={property.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                           <div>
                             <div className="font-medium">{property.name}</div>

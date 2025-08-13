@@ -31,7 +31,7 @@ export function PropertySummaryCards({ properties }: PropertySummaryCardsProps) 
   const avgRevPAR = properties.length > 0 
     ? properties.reduce((sum, prop) => sum + prop.revpar, 0) / properties.length 
     : 0;
-  const totalRevenue = properties.reduce((sum, prop) => sum + (prop.revpar * prop.rooms), 0);
+  // const totalRevenue = properties.reduce((sum, prop) => sum + (prop.revpar * prop.rooms), 0);
 
   const summaryCards = [
     {

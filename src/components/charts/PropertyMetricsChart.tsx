@@ -31,7 +31,21 @@ export function PropertyMetricsChart({ properties, title = "Property Performance
     Rooms: property.rooms
   }));
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  interface TooltipPayload {
+    dataKey: string;
+    value: number;
+    color: string;
+    payload: {
+      fullName: string;
+      city: string;
+      ADR: number;
+      'Occupancy %': number;
+      RevPAR: number;
+      Rooms: number;
+    };
+  }
+
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: TooltipPayload[]; label?: string }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
@@ -39,7 +53,7 @@ export function PropertyMetricsChart({ properties, title = "Property Performance
           <p className="font-semibold">{data.fullName}</p>
           <p className="text-sm text-gray-600">{data.city}</p>
           <div className="mt-2 space-y-1">
-            {payload.map((entry: any, index: number) => (
+            {payload.map((entry, index: number) => (
               <p key={index} style={{ color: entry.color }}>
                 {entry.dataKey}: {
                   entry.dataKey === 'Occupancy %' ? `${entry.value}%` :
