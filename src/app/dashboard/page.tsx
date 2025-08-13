@@ -109,9 +109,16 @@ export default function Dashboard() {
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <Badge variant="outline" className="px-3 py-1">
-              {properties.length} Properties
-            </Badge>
+            <div className="flex items-center gap-3">
+              <Badge variant="outline" className="px-3 py-1">
+                {properties.length} Properties
+              </Badge>
+              {properties === mockProperties && (
+                <Badge variant="secondary" className="px-3 py-1 bg-amber-50 text-amber-700 border border-amber-200">
+                  📊 Demo Data
+                </Badge>
+              )}
+            </div>
             <Button 
               onClick={handleRefresh} 
               variant="outline" 

@@ -197,6 +197,11 @@ export default function Home() {
           <div className="mb-8">
             <h2 className="text-3xl font-bold mb-2">Properties</h2>
             <p className="text-muted-foreground">Manage your hotel properties with ease</p>
+            {list === mockProperties && (
+              <div className="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-amber-50 text-amber-700 rounded-full text-sm border border-amber-200">
+                📊 Using demo data (database not connected)
+              </div>
+            )}
           </div>
 
         {/* Create Property Form */}
