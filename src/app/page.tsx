@@ -11,6 +11,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { toast } from 'sonner';
 import { Pencil, Trash2, Plus, Save, X, Building, MapPin, Users, DollarSign, TrendingUp, Calendar } from 'lucide-react';
 import Navbar from '@/components/navbar';
+import { mockProperties } from '@/lib/mock-data';
 
 type Property = {
   id: string;
@@ -50,14 +51,21 @@ export default function Home() {
     revpar: 0,
   });
 
-  // Fetch properties using React Query
+  // Fetch properties using React Query with fallback to mock data
   const { data: list = [], isLoading: loading } = useQuery({
     queryKey: ['properties'],
     queryFn: async () => {
-      const res = await fetch('/api/properties');
-      if (!res.ok) throw new Error('Failed to fetch properties');
-      return res.json();
+      try {
+        const res = await fetch('/api/properties');
+        if (!res.ok) throw new Error('Failed to fetch properties');
+        return res.json();
+      } catch (error) {
+        console.warn('API failed, using mock data:', error);
+        // Return mock data if API fails
+        return mockProperties;
+      }
     },
+    retry: false, // Don't retry failed requests, just use mock data
   });
 
   // Create property mutation

@@ -11,6 +11,7 @@
     "migrate": "node scripts/migrate.js",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
+    "db:seed": "node scripts/seed-properties.js",
     "vercel-build": "prisma generate && next build",
     "db:deploy": "prisma db push --accept-data-loss"
   },

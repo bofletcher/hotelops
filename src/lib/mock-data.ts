@@ -1,0 +1,107 @@
+// Mock data for testing the dashboard when database is not available
+export const mockProperties = [
+  {
+    id: "1",
+    name: "Grand Plaza Hotel",
+    city: "Atlanta",
+    state: "GA",
+    rooms: 250,
+    adr: 185.50,
+    occupancy: 0.78,
+    revpar: 144.69,
+    rating: 4.2,
+    status: "ACTIVE",
+    createdAt: "2024-01-15T10:00:00.000Z"
+  },
+  {
+    id: "2",
+    name: "Coastal Inn & Suites",
+    city: "Savannah",
+    state: "GA", 
+    rooms: 120,
+    adr: 165.75,
+    occupancy: 0.85,
+    revpar: 140.89,
+    rating: 4.0,
+    status: "ACTIVE",
+    createdAt: "2024-01-14T10:00:00.000Z"
+  },
+  {
+    id: "3",
+    name: "Mountain View Resort",
+    city: "Blue Ridge",
+    state: "GA",
+    rooms: 180,
+    adr: 220.00,
+    occupancy: 0.72,
+    revpar: 158.40,
+    rating: 4.5,
+    status: "ACTIVE",
+    createdAt: "2024-01-13T10:00:00.000Z"
+  },
+  {
+    id: "4",
+    name: "Business Express Hotel",
+    city: "Macon",
+    state: "GA",
+    rooms: 95,
+    adr: 125.25,
+    occupancy: 0.68,
+    revpar: 85.17,
+    rating: 3.8,
+    status: "ACTIVE",
+    createdAt: "2024-01-12T10:00:00.000Z"
+  },
+  {
+    id: "5",
+    name: "Seaside Resort & Spa",
+    city: "Jekyll Island",
+    state: "GA",
+    rooms: 300,
+    adr: 275.00,
+    occupancy: 0.82,
+    revpar: 225.50,
+    rating: 4.7,
+    status: "ACTIVE",
+    createdAt: "2024-01-11T10:00:00.000Z"
+  },
+  {
+    id: "6",
+    name: "Historic Downtown Inn",
+    city: "Augusta",
+    state: "GA",
+    rooms: 75,
+    adr: 145.00,
+    occupancy: 0.75,
+    revpar: 108.75,
+    rating: 4.1,
+    status: "ACTIVE",
+    createdAt: "2024-01-10T10:00:00.000Z"
+  },
+  {
+    id: "7",
+    name: "Airport Gateway Hotel",
+    city: "Atlanta",
+    state: "GA",
+    rooms: 200,
+    adr: 135.00,
+    occupancy: 0.88,
+    revpar: 118.80,
+    rating: 3.9,
+    status: "ACTIVE",
+    createdAt: "2024-01-09T10:00:00.000Z"
+  },
+  {
+    id: "8",
+    name: "University Lodge",
+    city: "Athens",
+    state: "GA",
+    rooms: 110,
+    adr: 155.50,
+    occupancy: 0.79,
+    revpar: 122.85,
+    rating: 4.0,
+    status: "ACTIVE",
+    createdAt: "2024-01-08T10:00:00.000Z"
+  }
+];
